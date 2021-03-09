@@ -72,7 +72,6 @@ static cell_t Curl_SetHeader(IPluginContext* pContext, const cell_t* params)
     char* value;
     pContext->LocalToString(params[3], &value);
 
-    smutils->LogMessage(myself, "SetHeader [%s] [%s]", header, value);
     curl->SetHeader(header, value);
 
     return true;
@@ -113,7 +112,7 @@ static cell_t Curl_Perform(IPluginContext* pContext, const cell_t* params)
         return pContext->ThrowNativeError("Invalid cURL handle %x (error %d)", params[1], err);
     }
 
-    return curl->Perform(params[1]);
+    return curl->Perform(params[2]);
 }
 
 static cell_t Curl_GetError(IPluginContext* pContext, const cell_t* params)

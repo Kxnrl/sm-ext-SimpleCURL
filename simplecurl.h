@@ -25,10 +25,7 @@ private:
     CURLcode code;
     int32_t responseCode;
 
-    SimpleCurl(CURL* curl)
-    {
-        handle = curl;
-    }
+    SimpleCurl(CURL* curl) : handle(curl) { }
 };
 
 #endif

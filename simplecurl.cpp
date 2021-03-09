@@ -68,10 +68,14 @@ bool SimpleCurl::Perform(bool isPost)
         curl_easy_setopt(handle, CURLOPT_POSTFIELDS, requestBody.c_str());
     }
 
-    curl_easy_setopt(handle, isPost ? CURLOPT_POST : CURLOPT_HTTPGET, 1L);
+    curl_easy_setopt(handle, isPost ? CURLOPT_POST : CURLOPT_HTTPGET, true);
 
     curl_easy_setopt(handle, CURLOPT_WRITEFUNCTION, CurlResponseCallback);
     curl_easy_setopt(handle, CURLOPT_WRITEDATA, &this->responseBody);
+
+    // ssl
+    //curl_easy_setopt(handle, CURLOPT_SSL_VERIFYPEER, false);
+    //curl_easy_setopt(handle, CURLOPT_SSL_VERIFYHOST, false);
 
     this->code = curl_easy_perform(handle);
 
